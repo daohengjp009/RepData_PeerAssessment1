@@ -154,3 +154,13 @@ summary2 # Activity dataset with missing value filled in.
 ## 8.Panel plot comparing the average number of steps taken per 5-minute interval across weekdays and weekends
 
 ![plot of chunk panel plot](figure/panel plot-1.png)
+                
+                
+                
+        
+        
+        
+        
+        
+        
+
