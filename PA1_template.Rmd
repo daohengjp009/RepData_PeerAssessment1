@@ -128,6 +128,8 @@ avg.step.weekend <- aggregate(steps ~ interval, weekenddf, mean)
 par(mfrow=c(2,1))
 weekend.plot <- plot(avg.step.weekend, type = 'l', main = "weekend")
 weekday.plot <- plot(avg.step.weekday, type = 'l', main = "weekday")
+weekend.plot
+weekday.plot
 ```                
                 
                 
