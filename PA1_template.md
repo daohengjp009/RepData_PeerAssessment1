@@ -153,15 +153,19 @@ summary2 # Activity dataset with missing value filled in.
 
 ## 8.Panel plot comparing the average number of steps taken per 5-minute interval across weekdays and weekends
 
+
+```r
+new.activity$weekday <- weekdays(new.activity$date)
+val_repl0 <- c("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
+val_repl1 <- c("weekday","weekday","weekday","weekday","weekday","weekend","weekend")
+new.activity$weekday <- stri_replace_all_regex(new.activity$weekday, pattern = val_repl0, replacement = val_repl1, vectorize = FALSE)
+weekdaydf <- new.activity[which(new.activity$weekday == "weekday"),]
+weekenddf <- new.activity[which(new.activity$weekday == "weekend"),]
+avg.step.weekday <- aggregate(steps ~ interval, weekdaydf, mean)
+avg.step.weekend <- aggregate(steps ~ interval, weekenddf, mean)
+```
+
 ![plot of chunk panel plot](figure/panel plot-1.png)
-
-```
-## NULL
-```
-
-```
-## NULL
-```
                 
                 
                 
