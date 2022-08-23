@@ -51,6 +51,11 @@ summary(sum0df$Total.steps)
 
 ## 4. Time series plot of the average number of steps taken
 
+
+```r
+avg.step <- aggregate(steps ~ interval, activity, mean) ## aggregate mean of step in average 5mins interval
+```
+
 ![plot of chunk Time series plot](figure/Time series plot-1.png)
 
 
@@ -132,6 +137,7 @@ sum1df <- data.frame(total.steps = sum1, date = names(sum1))
 ![plot of chunk hist2](figure/hist2-1.png)
 
 
+
 ```r
 summary1 # Activity dataset without NA.
 ```
@@ -165,7 +171,12 @@ avg.step.weekday <- aggregate(steps ~ interval, weekdaydf, mean)
 avg.step.weekend <- aggregate(steps ~ interval, weekenddf, mean)
 ```
 
-![plot of chunk panel plot](figure/panel plot-1.png)
+
+```r
+par(mfrow=c(2,1))
+```
+
+![plot of chunk panel plot](figure/panel plot-1.png)![plot of chunk panel plot](figure/panel plot-2.png)
                 
                 
                 
