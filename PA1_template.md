@@ -32,6 +32,11 @@ sum0df <- data.frame(Total.steps = sum0, date = names(sum0)) ## convert sum0 int
 
 ## 2. Histogram of the total number of steps taken each day
 
+
+```r
+hist(sum0df$Total.steps, xlab = "Total number of steps", main = NULL)
+```
+
 ![plot of chunk hist1](figure/hist1-1.png)
 
 
@@ -54,6 +59,11 @@ summary(sum0df$Total.steps)
 
 ```r
 avg.step <- aggregate(steps ~ interval, activity, mean) ## aggregate mean of step in average 5mins interval
+```
+
+
+```r
+plot (avg.step, xlab = "Interval", ylab = "Number of steps", type = "l")
 ```
 
 ![plot of chunk Time series plot](figure/Time series plot-1.png)
@@ -134,9 +144,18 @@ sum1 <- tapply(new.activity$steps, new.activity$date, sum)
 sum1df <- data.frame(total.steps = sum1, date = names(sum1))
 ```
 
+
+```r
+hist(sum1df$total.steps, xlab = "Total number of steps", main = NULL)
+```
+
 ![plot of chunk hist2](figure/hist2-1.png)
 
 
+```r
+summary1 <- summary(sum1df$total.steps)
+summary2 <- summary(sum0df$Total.steps)
+```
 
 ```r
 summary1 # Activity dataset without NA.
@@ -171,6 +190,13 @@ avg.step.weekday <- aggregate(steps ~ interval, weekdaydf, mean)
 avg.step.weekend <- aggregate(steps ~ interval, weekenddf, mean)
 ```
 
+
+
+```r
+par(mfrow=c(2,1))
+plot(avg.step.weekend, type = 'l', main = "weekend")
+plot(avg.step.weekday, type = 'l', main = "weekday")
+```
 
 ![plot of chunk panel plot1](figure/panel plot1-1.png)
 

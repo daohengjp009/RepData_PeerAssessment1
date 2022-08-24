@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-``` {r load all package}
+``` {r load all package, echo = TRUE}
 
 library(knitr)
 library(ggplot2)
@@ -22,7 +22,7 @@ library(stringi)
 
 ## 1. Code for reading in the dataset and/or processing the data
 
-```{r activity}
+```{r activity, echo = TRUE}
 activity <- read.csv("activity.csv")
 activity0 <- na.omit(activity) ## dataset without NA
 activity0$date <- as.Date(as.character(activity0$date, "%Y%m%d")) ## convert activity's date in DATE class
@@ -33,14 +33,14 @@ sum0df <- data.frame(Total.steps = sum0, date = names(sum0)) ## convert sum0 int
 
 ## 2. Histogram of the total number of steps taken each day
 
-```{r hist1, echo=FALSE}
+```{r hist1, echo=TRUE}
 hist(sum0df$Total.steps, xlab = "Total number of steps", main = NULL)
 ```
 
 
 ## 3. Mean and median number of steps taken each day
 
-```{r mean and median}
+```{r mean and median, echo = TRUE}
 
 summary(sum0df$Total.steps)
 
@@ -50,17 +50,17 @@ summary(sum0df$Total.steps)
 
 ## 4. Time series plot of the average number of steps taken
 
-```{r Time series data}
+```{r Time series data,echo = TRUE}
 
 avg.step <- aggregate(steps ~ interval, activity, mean) ## aggregate mean of step in average 5mins interval
 
 ```
 
-```{r Time series plot, echo=FALSE}
+```{r Time series plot, echo = TRUE}
 plot (avg.step, xlab = "Interval", ylab = "Number of steps", type = "l")
 ```
 
-```{r max of steps}
+```{r max of steps, echo = TRUE}
 max.avg.steps <- avg.step[ which.max(avg.step$steps),]
 max.avg.steps
 ```
@@ -69,14 +69,14 @@ max.avg.steps
 
 ## 5. Imputing missing values
 
-```{r total rows of missing values}
+```{r total rows of missing values, echo = TRUE}
 
 sum(is.na(activity)) 
 
 ```
 #### The total number of missing values (NA) in the dataset is 2304 rows.
 
-```{r create new activity dataset with filling the mean of 5-minute interval into the missing value}
+```{r create new activity dataset with filling the mean of 5-minute interval into the missing value, echo = TRUE}
 
 new.activity <- activity
 
@@ -89,30 +89,30 @@ for (i in 1:nrow(new.activity)) { ## range : row 1 to rows of dataset
 } 
 ```
 #### New dataset with the missing value (NA) filled in 
-```{r new activity dataset with the missing value filled in}
+```{r new activity dataset with the missing value filled in, echo = TRUE}
 
 nrow(activity) == nrow(new.activity)
 dim(new.activity)
 head(new.activity)
 ```                
 
-```{r histogram of new.activity}
+```{r histogram of new.activity, echo = TRUE}
 
 new.activity$date <- as.Date(as.character(new.activity$date, "%Yd%%m"))
 sum1 <- tapply(new.activity$steps, new.activity$date, sum)
 sum1df <- data.frame(total.steps = sum1, date = names(sum1))
 ```
 
-```{r hist2, echo=FALSE}
+```{r hist2, echo=TRUE}
 hist(sum1df$total.steps, xlab = "Total number of steps", main = NULL)
 ```
 
-```{r mean and median of new.activity, include=FALSE}
+```{r mean and median of new.activity, echo = TRUE}
 
 summary1 <- summary(sum1df$total.steps)
 summary2 <- summary(sum0df$Total.steps)
 ```
-```{r comparsion of both dataset}
+```{r comparsion of both dataset, echo = TRUE}
 summary1 # Activity dataset without NA.
 summary2 # Activity dataset with missing value filled in.
 ```
@@ -120,7 +120,7 @@ summary2 # Activity dataset with missing value filled in.
 
 ## 8.Panel plot comparing the average number of steps taken per 5-minute interval across weekdays and weekends
 
-```{r weekday and weekend}
+```{r weekday and weekend, echo = TRUE}
 
 new.activity$weekday <- weekdays(new.activity$date)
 val_repl0 <- c("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
@@ -133,7 +133,7 @@ avg.step.weekend <- aggregate(steps ~ interval, weekenddf, mean)
 ```
 
 
-```{r panel plot1, echo=FALSE}
+```{r panel plot1, echo=TRUE}
 
 par(mfrow=c(2,1))
 plot(avg.step.weekend, type = 'l', main = "weekend")
