@@ -132,20 +132,15 @@ avg.step.weekday <- aggregate(steps ~ interval, weekdaydf, mean)
 avg.step.weekend <- aggregate(steps ~ interval, weekenddf, mean)
 ```
 
-```{r plot combine}
+
+```{r panel plot1, echo=FALSE}
 
 par(mfrow=c(2,1))
-
-```
-
-```{r panel plot, echo=FALSE}
-
 plot(avg.step.weekend, type = 'l', main = "weekend")
 plot(avg.step.weekday, type = 'l', main = "weekday")
 
 ```                
-                
-                
+
                 
         
         

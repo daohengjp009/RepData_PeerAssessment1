@@ -172,13 +172,8 @@ avg.step.weekend <- aggregate(steps ~ interval, weekenddf, mean)
 ```
 
 
-```r
-par(mfrow=c(2,1))
-```
+![plot of chunk panel plot1](figure/panel plot1-1.png)
 
-![plot of chunk panel plot](figure/panel plot-1.png)![plot of chunk panel plot](figure/panel plot-2.png)
-                
-                
                 
         
         
